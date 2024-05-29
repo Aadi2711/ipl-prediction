@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import pickle
+import os
 
 teams = ['Sunrisers Hyderabad',
  'Mumbai Indians',
@@ -18,7 +19,10 @@ cities = ['Hyderabad', 'Bangalore', 'Mumbai', 'Indore', 'Kolkata', 'Delhi',
        'Visakhapatnam', 'Pune', 'Raipur', 'Ranchi', 'Abu Dhabi',
        'Sharjah', 'Mohali', 'Bengaluru']
 
-pipe = pickle.load(open('./pipe.pkl','rb'))
+filename = "./pipe.pkl"
+os.makedirs(os.path.dirname(filename), exist_ok=True)
+with open(filename, 'rb') as f:
+    pipe = pickle.load(f)
 st.title('IPL Win Predictor')
 
 col1, col2 = st.columns(2)
